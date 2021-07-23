@@ -7,8 +7,11 @@
 
 ### Description
 - Java Spring_boot를 이용한 쇼핑몰 웹 서비스를 소규모로 구현해보는 프로젝트.
+
 - MVC 패턴을 준수할 것!
+
 - Service 클래스를 활용한 기능별 역할 분담!
+
 - Git을 활용한 프로젝트 관리!
 
 ### Enviroment
