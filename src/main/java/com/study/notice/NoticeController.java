@@ -48,6 +48,10 @@ public class NoticeController {
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
+		String id = Utility.checkNull(request.getParameter("id"));
+		System.out.println("col = "+col);
+		System.out.println("word = "+word);
+		System.out.println("id = "+id);
 
 		if (col.equals("total")) {
 			word = "";

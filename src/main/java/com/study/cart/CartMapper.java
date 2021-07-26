@@ -2,6 +2,8 @@ package com.study.cart;
 
 public interface CartMapper {
 
-	int create(int contentsno);
+	int create(CartDTO dto);
+	
+	int createOrderCart(OrderCartDTO dto);
 
 }
