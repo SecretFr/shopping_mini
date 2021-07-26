@@ -68,7 +68,7 @@ public class OrderController {
 		
 		CartDTO cartDto = new CartDTO();
 		cartDto.setId(id);
-		// cartDto.setCartno(cartno);
+		cartDto.setCartno(cartno);
 		cartDto.setOrderstate(0);
 		
 		List<CartAndContentsDTO> cartAndContents = orderMapper.getContents(cartDto);
