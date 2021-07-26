@@ -35,7 +35,7 @@ public class ContentsController {
 		ContentsDTO dto =service.read(contentsno);
 		model.addAttribute("dto",dto);
 	
-	return "contents/read";
+	return "/contents/read";
 }
 	
 	@GetMapping("/contents/mainlist/{cateno}")

@@ -11,5 +11,11 @@ public class CartServiceImpl implements CartService {
 	  @Autowired
 	  private CartMapper mapper;
 
+	@Override
+	public int create(int contentsno) {
+		// TODO Auto-generated method stub
+		return mapper.create(contentsno);
+	}
+
 
 }

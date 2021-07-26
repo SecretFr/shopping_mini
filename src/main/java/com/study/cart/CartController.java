@@ -1,23 +1,18 @@
 package com.study.cart;
 
-import java.io.IOException;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.contents.ContentsDTO;
-import com.study.utility.Utility;
 
 @Controller
 public class CartController {
@@ -27,21 +22,31 @@ public class CartController {
 	    private CartService service;
 	 
 		@PostMapping("/cart/create")
-		public String update(@RequestParam Map<String,String> map, Model model) {
+		public String update( @RequestParam Map<String,String> map, Model model) {
 
 		    model.addAttribute("pname", map.get("pname"));
 		    model.addAttribute("contentsno", map.get("contentsno"));
 		    model.addAttribute("price", map.get("price"));
 		    model.addAttribute("detail", map.get("detail"));
 		    model.addAttribute("stock", map.get("stock"));
-			//ContentsDTO dto = service.read(contentsno);
 
+
+		    
 	
+		    int contentsno = Integer.parseInt(map.get("contentsno"));
+		
+		    System.out.println("contentsno : " + contentsno);
+		    System.out.println("============================");
 		    //카트 테이블에 등록하는 로직 구현 
+		   
 		    
-		    
+		    //CartDTO dto2 = service.create();
 		  //  return "redirect:/cart/list";
-		    	return "/cart/list";
+			if (service.create(contentsno) > 0) {
+				return "redirect:/cart/list";
+			} else {
+				return "error";
+			}
 		}
 	 
 	 

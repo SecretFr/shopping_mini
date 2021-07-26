@@ -12,6 +12,9 @@
 로그인된 아이디의 id값 : "${id}" <br>
 
 
-"${pname}"
+"${pname}" <Br>
+
+
+cartno : "${test}"
 </body>
 </html>

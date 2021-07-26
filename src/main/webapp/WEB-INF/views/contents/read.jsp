@@ -6,17 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script>
-$(document).ready(function(){
-    // test라는 클래스를가진 div를 클릭할 경우 "테스트입니다요."라는 alert가 뜬다.
-    $("#pluscart").on("click", function(){  
-        alert("테스트입니다요.");
-    });    
-});
- 
-</script>
 
-</script>
+
 </head>
 <body>
 제품 상세 페이지 입니다. <br>
@@ -49,7 +40,8 @@ $(document).ready(function(){
  
  
 
-<form class="form-horizontal" 
+ </table>
+ <form class="form-horizontal" 
         action="/cart/create"
         method="post">
 <input type="hidden" name="pname" value="${dto.contentsno}">  
@@ -60,11 +52,7 @@ $(document).ready(function(){
 
 <input type="submit" class="createcartbtn" value="장바구니 등록!"></input>
 </form>
- 
- 
-
-
- </table>
+ </div>
 </body>
 
 
