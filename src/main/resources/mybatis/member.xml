@@ -100,6 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{address1}, #{address2}, #{job}, sysdate, #{fname}, 'H')
 	</insert>
 	
+	<!-- 
 	<resultMap type="com.study.member.MemberDTO" id="memberOrder">
         <result property="id" column="id"/>
         <result property="mname" column="mname"/>
@@ -124,5 +125,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         on m.id = o.id
         where m.id=#{id}
     </select> 
+     -->
+    <select id="getMember" parameterType="String" resultType="com.study.member.MemberDTO">
+    	select id, fname, mname, address1, address2, zipcode
+    	from member
+    	where id = #{id}
+    </select>
 	
 </mapper>

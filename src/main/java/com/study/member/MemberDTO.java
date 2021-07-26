@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.study.orders.OrdersDTO;
+import com.study.order.OrderDTO;
 
 import lombok.Data;
 
@@ -25,7 +25,7 @@ public class MemberDTO {
 	private String grade;
 	private MultipartFile fnameMF;
 	
-	private List<OrdersDTO> list;
+	private List<OrderDTO> list;
 	
 	@Override
 	public String toString() {
@@ -132,10 +132,10 @@ public class MemberDTO {
 	public void setFnameMF(MultipartFile fnameMF) {
 		this.fnameMF = fnameMF;
 	}
-	public List<OrdersDTO> getList() {
+	public List<OrderDTO> getList() {
 		return list;
 	}
-	public void setList(List<OrdersDTO> list) {
+	public void setList(List<OrderDTO> list) {
 		this.list = list;
 	}
 	

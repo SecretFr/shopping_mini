@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service("com.study.contents.ContentsServiceImpl")
 public class ContentsServiceImpl implements ContentsService {
+	
 	@Autowired
 	private ContentsMapper mapper;
 
