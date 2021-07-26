@@ -17,46 +17,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.study.notice.NoticeDTO;
-import com.study.notice.NoticeService;
 import com.study.utility.Utility;
 
 @Controller
 public class NoticeController {
 
 	@Autowired
-	@Qualifier("com.study.model.NoticeServiceImpl")
+	@Qualifier("com.study.notice.NoticeServiceImpl")
 	private NoticeService service;
 
-//	@GetMapping("/")
-//	public String home(Locale locale, Model model) {
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//		String formattedDate = dateFormat.format(date);
-//
-//		model.addAttribute("serverTime", formattedDate);
-//		return "/home";
-//	}
-
-	@GetMapping("create")
+	@GetMapping("/notice/create")
 	public String create() {
 
-		return "/create";
+		return "/notice/create";
 	}
 
-	@PostMapping("create")
+	@PostMapping("/notice/create")
 	public String create(NoticeDTO dto) {
 
 		if (service.create(dto) == 1) {
 			return "redirect:list";
 		} else {
-			return "/error";
+			return "/notice/error";
 		}
 
 	}
 
-	@RequestMapping("list")
+	@RequestMapping("/notice/list")
 	public String list(HttpServletRequest request) {
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
@@ -97,10 +84,10 @@ public class NoticeController {
 		request.setAttribute("paging", paging);
 
 		// view페이지 리턴
-		return "/list";
+		return "/notice/list";
 	}
 
-	@GetMapping("/read")
+	@GetMapping("/notice/read")
 	public String read(int noticeno, Model model) {
 
 		service.upCnt(noticeno);
@@ -113,18 +100,18 @@ public class NoticeController {
 
 		model.addAttribute("dto", dto);
 
-		return "/read";
+		return "/notice/read";
 	}
 
-	@GetMapping("update")
+	@GetMapping("/notice/update")
 	public String update(int noticeno, Model model) {
 
 		model.addAttribute("dto", service.read(noticeno));
 
-		return "/update";
+		return "/notice/update";
 	}
 
-	@PostMapping("update")
+	@PostMapping("/notice/update")
 	public String update(NoticeDTO dto) {
 
 		Map map = new HashMap();
@@ -139,24 +126,25 @@ public class NoticeController {
 		}
 
 		if (pcnt != 1) {
-			return "./passwdError";
+			return "./notice/passwdError";
 		} else if (cnt == 1) {
 			return "redirect:./list";
 		} else {
-			return "./error";
+			return "./notice/error";
 		}
 
 	}
 
-	@GetMapping("/delete")
+	@GetMapping("/notice/delete")
 	public String delete() {
 
-		return "/delete";
+		return "/notice/delete";
 	}
 
-	@PostMapping("/delete")
+	@PostMapping("/notice/delete")
 	public String delete(HttpServletRequest request, int noticeno, String passwd) {
-
+		
+		System.out.println("noticeno: "+noticeno);
 		Map map = new HashMap();
 		map.put("noticeno", noticeno);
 		map.put("passwd", passwd);
@@ -169,11 +157,11 @@ public class NoticeController {
 		}
 
 		if (pcnt != 1) {
-			return "./passwdError";
+			return "./notice/passwdError";
 		} else if (cnt == 1) {
 			return "redirect:./list";
 		} else {
-			return "./error";
+			return "./notice/error";
 		}
 
 	}

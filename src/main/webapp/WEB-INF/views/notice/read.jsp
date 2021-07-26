@@ -14,6 +14,7 @@
 	function deleteM() {
 		var url = "delete";
 		url += "?noticeno=${dto.noticeno}";
+		alert(url);
 		location.href = url;
 	}
 

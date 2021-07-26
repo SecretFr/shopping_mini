@@ -7,6 +7,8 @@ public class NoticeDTO {
 	private String content;
 	private String wname;
 	private String passwd;
+	private int cnt;
+	private String rdate;
 	public NoticeDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -68,6 +70,5 @@ public class NoticeDTO {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
-	private int cnt;
-	private String rdate;
+	
 }

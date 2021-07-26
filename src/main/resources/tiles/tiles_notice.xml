@@ -4,37 +4,42 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="/create" extends="main">
+	<definition name="main"
+		template="/WEB-INF/views/template/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/template/top.jsp" />
+	</definition>
+	<definition name="/notice/create" extends="main">
 		<put-attribute name="title" value="등록"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/notice/createForm.jsp" />
 	</definition>
-	<definition name="/list" extends="main">
+	<definition name="/notice/list" extends="main">
 		<put-attribute name="title" value="목록"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/notice/list.jsp" />
 	</definition>
-	<definition name="/read" extends="main">
+	<definition name="/notice/read" extends="main">
 		<put-attribute name="title" value="조회"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/notice/read.jsp" />
 	</definition>
-	<definition name="/update" extends="main">
+	<definition name="/notice/update" extends="main">
 		<put-attribute name="title" value="수정"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/notice/updateForm.jsp" />
 	</definition>
-	<definition name="/delete" extends="main">
+	<definition name="/notice/delete" extends="main">
 		<put-attribute name="title" value="삭제"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/notice/deleteForm.jsp" />
 	</definition>
-	<definition name="/error" extends="main">
+	<definition name="/notice/error" extends="main">
 		<put-attribute name="title" value="에러"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/notice/error.jsp" />
 	</definition>
-	<definition name="/passwdError" extends="main">
+	<definition name="/notice/passwdError" extends="main">
 		<put-attribute name="title" value="비밀번호 오류"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/notice/passwdError.jsp" />
