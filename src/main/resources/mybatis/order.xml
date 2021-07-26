@@ -5,17 +5,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.study.order.OrderMapper">
 
 	<!-- 영모님 cartdto 위치로 parameterType 패키지명 포함하여 변경 필요 -->
-    <select id="getContents" parameterType="com.study.order.CartDTO" resultType="com.study.order.CartAndContentsDTO">
-        select o.odate, o.payment, c.cartno cartno, c.id id, c.quantity quantity, c.price price, c.orderstate orderstate, cs.contentsno contentsno, cs.pname pname, cs.price contentsPrice, cs.detail detail 
-		from order o inner join cart c
+    <select id="getOrders" parameterType="com.study.order.CartDTO" resultType="com.study.order.CartAndContentsDTO">
+        select o.odate odate, o.payment payment, c.cartno cartno, c.id id, c.quantity quantity, c.price price, c.orderstate orderstate, cs.contentsno contentsno, cs.pname pname, cs.price contentsPrice, cs.detail detail 
+		from orders o inner join cart c
 		on o.cartno = c.cartno
 			inner join ordercart oc
             on c.cartno = oc.cartno
                 inner join contents cs
                 on oc.contentsno = cs.contentsno
-        where id = #{id}
-        and orderstate = #{orderstate}
-        order by cartno desc
+        where c.id = #{id}
+        and c.orderstate =  #{orderstate}
+        order by o.odate desc
+    </select> 
+    
+    <select id="getContents" parameterType="com.study.order.CartDTO" resultType="com.study.order.CartAndContentsDTO">
+        select c.cartno cartno, c.id id, c.quantity quantity, c.price price, c.orderstate orderstate, cs.contentsno contentsno, cs.pname pname, cs.price contentsPrice, cs.detail detail 
+		from cart c 
+			inner join ordercart oc
+            on c.cartno = oc.cartno
+                inner join contents cs
+                on oc.contentsno = cs.contentsno
+        where c.id = #{id}
+        and c.cartno = #{cartno}
+        and c.orderstate =  #{orderstate}
+        order by c.cartno desc
     </select> 
  
 	
