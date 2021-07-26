@@ -37,11 +37,11 @@
 		</table>
 
 			<form class="form-horizontal" action="/cart/create" method="post">
-				<input type="hidden" name="pname" value="${dto.contentsno}">
+				<input type="hidden" name="contentsno" value="${dto.contentsno}">
 				<input type="hidden" name="pname" value="${dto.pname}"> 
 				<input type="hidden" name="price" value="${dto.price}"> 
 				<input type="hidden" name="detail" value="${dto.detail}"> 
-				<input type="hidden" name="detail" value="${dto.stock}"> 
+				<input type="hidden" name="stock" value="${dto.stock}"> 
 				<input type="submit" class="createcartbtn" value="장바구니 등록!"></input>
 			</form>
  </div>
