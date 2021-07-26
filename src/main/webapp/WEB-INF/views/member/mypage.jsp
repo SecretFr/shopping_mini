@@ -22,14 +22,13 @@
   <div class="col-sm-6">
   <h3><span class="glyphicon glyphicon-gift"></span> 주문 내역 및 리뷰 작성</h3>
   <ul class="list-group">
-   ${cartAndContents}
    <c:choose>
     <c:when test="${empty cartAndContents }">주문한 상품이 없습니다.</c:when>
     
     <c:otherwise>
     <c:forEach var="order" items="${cartAndContents}">
     <!-- ${fn:substring(order.odate,0,10)} 추가 필요-->
-    <li class="list-group-item">${order.pname},${order.quantity}, ${order.price }원
+    <li class="list-group-item">${fn:substring(order.odate,0,10)}, ${order.pname},${order.quantity}, ${order.price }원
      <a href="review/create/{order.contentsno}"><span class="badge">Rivew</span></a></li>
     </c:forEach>
     </c:otherwise>

@@ -1,5 +1,7 @@
 package com.study.order;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartAndContentsDTO {
+	private LocalDate odate;
+	private String payment;
 	private int cartno;
 	private String id;
 	private int quantity;

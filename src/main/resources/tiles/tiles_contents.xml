@@ -4,6 +4,11 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+	<definition name="main"
+		template="/WEB-INF/views/template/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/template/top.jsp" />
+	</definition>
 	<definition name="/contents/create" extends="main">
 		<put-attribute name="title" value="상품등록"></put-attribute>
 		<put-attribute name="body"
@@ -28,4 +33,9 @@
             <put-attribute name="title" value="상품메인목록" ></put-attribute> 
             <put-attribute name="body" value="/WEB-INF/views/contents/mainlist.jsp" /> 
     </definition> 
+    	<definition name="/contents/read" extends="main">
+		<put-attribute name="title" value="탑"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/contents/read.jsp" />
+	</definition>
 </tiles-definitions>

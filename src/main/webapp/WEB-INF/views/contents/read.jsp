@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
 	제품 상세 페이지 입니다.
@@ -45,11 +44,7 @@
 				<input type="hidden" name="detail" value="${dto.stock}"> 
 				<input type="submit" class="createcartbtn" value="장바구니 등록!"></input>
 			</form>
-
-
-
-</div>
-
+ </div>
 </body>
 
 
