@@ -95,6 +95,13 @@ public class ContentsController {
 
 		return list;
 	}
+	@GetMapping(value = "/contents/getCategoryGrp", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Map> getCategoryGrp(HttpServletRequest request) {
+		List<Map> list = service.getCategoryGrp();
+
+		return list;
+	}
 
 	@PostMapping("/contents/updateFile")
 	public String updateFile(MultipartFile filenameMF, String oldfile, int contentsno, HttpServletRequest request)

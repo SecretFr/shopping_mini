@@ -65,4 +65,10 @@ public class ContentsServiceImpl implements ContentsService {
 		return mapper.mainlist(map);
 	}
 
+	@Override
+	public List<Map> getCategoryGrp() {
+		// TODO Auto-generated method stub
+		return mapper.getCategoryGrp();
+	}
+
 }

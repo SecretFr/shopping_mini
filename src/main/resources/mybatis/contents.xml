@@ -39,9 +39,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where contentsno = #{conentsno}
 	</select>
 	<select id="getCategory" resultType="Map">
-		select cateno, catename from
-		category
-		where categrpno is null
+		select g.categrpno, g.grpname, c.cateno, c.catename from
+		category c, categrp g
+		where c.categrpno = g.categrpno
+	</select>
+	
+	<select id="getCategoryGrp" resultType="Map">
+		select grpname from categrp
 	</select>
 
 	<select id="read" parameterType="int"

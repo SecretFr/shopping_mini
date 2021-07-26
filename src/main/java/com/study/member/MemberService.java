@@ -23,4 +23,7 @@ public interface MemberService {
 	List<MemberDTO> list(Map map);
 
 	int updateFile(Map map);
+	
+	MemberDTO mypage(String id);
+
 }

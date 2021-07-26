@@ -26,13 +26,38 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/dropdown.css">
 <style type="text/css">
 #grade {
 	color: white;
 }
 </style>
 <script type="text/javascript">
+
 	$(function() {
+		$.ajax({
+			url : "/contents/getCategoryGrp",
+			type : "GET",
+			//data: JSON.stringify(),
+			//contentType: "application/json; charset=utf-8;",
+			dataType : "json",
+			success : function(data) {
+				// alert("success:"+data.length);
+				// alert(data[0].CATENO);
+				// alert(data[0].CATENAME)
+				console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					$('#cmenu').append(
+							"<li class='dropdown-submenu'><a tabindex='-1' href='#'>" + data[i].GRPNAME + "</a></li>");
+				}
+			},
+			error : function(request, status, error) {
+				alert("code = " + request.status + " message = "
+						+ request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});//ajax end
+	});//페이지로딩 
+ 	$(function() {
 		$.ajax({
 			url : "/contents/getCategory",
 			type : "GET",
@@ -43,6 +68,7 @@
 				// alert("success:"+data.length);
 				// alert(data[0].CATENO);
 				// alert(data[0].CATENAME)
+				console.log(data);
 				for (var i = 0; i < data.length; i++) {
 					$('#pmenu').append(
 							"<li><a href='/contents/mainlist/"+data[i].CATENO+"'>"
@@ -68,15 +94,27 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="${root}/">Home</a></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Product <span class="caret"></span></a>
+					<li class="dropdown" id="myDropdown">
+					<!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product <span class="caret"></span></a> -->
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Product <span class="caret"></span></a>
 						<ul class="dropdown-menu" id="pmenu">
+							<!-- <li class="dropdown-submenu"><a tabindex="-1" href="#">Pants</a> -->
+<!-- 								<ul class="dropdown-menu" id="pmenu">
 
-						</ul></li>
+								</ul> -->
+							<!-- </li> -->
+							<!-- <li class="dropdown-submenu"><a tabindex="-1" href="#">Shoes</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Second level</a></li>
+									<li><a href="#">Second level</a></li>
+								</ul>
+							</li> -->
+						</ul>
+					</li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">community <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="${root}/contents/mypage">Mypage</a></li>
+							<li><a href="${root}/member/mypage">Mypage</a></li>
 							<li><a href="${root}/review/list">Review</a></li>
 							<li><a href="#">Notice</a></li>
 							<li><a href="#">Q&A</a></li>
