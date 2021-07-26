@@ -21,7 +21,7 @@ import com.study.utility.Utility;
 
 @Controller
 public class NoticeController {
-
+	//git test
 	@Autowired
 	@Qualifier("com.study.notice.NoticeServiceImpl")
 	private NoticeService service;
