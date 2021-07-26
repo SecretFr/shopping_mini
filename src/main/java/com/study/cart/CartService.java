@@ -4,12 +4,9 @@ package com.study.cart;
 
 public interface CartService {
 
+	int create(CartDTO cartDto);
 	
-
-	int create(int contentsno);
-
+	int createOrderCart(OrderCartDTO dto);
 //	CartDTO create();
-
-
 
 }

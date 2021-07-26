@@ -2,6 +2,10 @@ package com.study.order;
 
 import java.time.LocalDate;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 public class CartAndContentsDTO {
 	private LocalDate odate;
 	private String payment;
@@ -14,27 +18,6 @@ public class CartAndContentsDTO {
 	private String pname;
 	private int contentsPrice;
 	private String detail;
-
-	public CartAndContentsDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public CartAndContentsDTO(LocalDate odate, String payment, int cartno, String id, int quantity, int price,
-			int orderstate, int contentsno, String pname, int contentsPrice, String detail) {
-		super();
-		this.odate = odate;
-		this.payment = payment;
-		this.cartno = cartno;
-		this.id = id;
-		this.quantity = quantity;
-		this.price = price;
-		this.orderstate = orderstate;
-		this.contentsno = contentsno;
-		this.pname = pname;
-		this.contentsPrice = contentsPrice;
-		this.detail = detail;
-	}
 
 	public LocalDate getOdate() {
 		return odate;
@@ -122,6 +105,34 @@ public class CartAndContentsDTO {
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+
+	@Override
+	public String toString() {
+		return "CartAndContentsDTO [odate=" + odate + ", payment=" + payment + ", cartno=" + cartno + ", id=" + id
+				+ ", quantity=" + quantity + ", price=" + price + ", orderstate=" + orderstate + ", contentsno="
+				+ contentsno + ", pname=" + pname + ", contentsPrice=" + contentsPrice + ", detail=" + detail + "]";
+	}
+
+	public CartAndContentsDTO(LocalDate odate, String payment, int cartno, String id, int quantity, int price,
+			int orderstate, int contentsno, String pname, int contentsPrice, String detail) {
+		super();
+		this.odate = odate;
+		this.payment = payment;
+		this.cartno = cartno;
+		this.id = id;
+		this.quantity = quantity;
+		this.price = price;
+		this.orderstate = orderstate;
+		this.contentsno = contentsno;
+		this.pname = pname;
+		this.contentsPrice = contentsPrice;
+		this.detail = detail;
+	}
+
+	public CartAndContentsDTO() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }

@@ -12,9 +12,15 @@ public class CartServiceImpl implements CartService {
 	  private CartMapper mapper;
 
 	@Override
-	public int create(int contentsno) {
+	public int create(CartDTO dto) {
 		// TODO Auto-generated method stub
-		return mapper.create(contentsno);
+		return mapper.create(dto);
+	}
+
+	@Override
+	public int createOrderCart(OrderCartDTO dto) {
+		// TODO Auto-generated method stub
+		return mapper.createOrderCart(dto);
 	}
 
 

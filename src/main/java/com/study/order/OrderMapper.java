@@ -2,6 +2,8 @@ package com.study.order;
 
 import java.util.List;
 
+import com.study.cart.CartDTO;
+
 public interface OrderMapper {
 
 	//cartMapper

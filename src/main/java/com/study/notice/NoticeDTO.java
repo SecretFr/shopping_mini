@@ -9,6 +9,7 @@ public class NoticeDTO {
 	private String passwd;
 	private int cnt;
 	private String rdate;
+	private String id;
 	public NoticeDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -69,6 +70,12 @@ public class NoticeDTO {
 	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

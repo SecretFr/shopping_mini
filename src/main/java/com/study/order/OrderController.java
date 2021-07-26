@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.study.cart.CartDTO;
 import com.study.member.MemberMapper;
 
 @Controller
@@ -67,7 +68,7 @@ public class OrderController {
 		
 		CartDTO cartDto = new CartDTO();
 		cartDto.setId(id);
-		cartDto.setCartno(cartno);
+		// cartDto.setCartno(cartno);
 		cartDto.setOrderstate(0);
 		
 		List<CartAndContentsDTO> cartAndContents = orderMapper.getContents(cartDto);
