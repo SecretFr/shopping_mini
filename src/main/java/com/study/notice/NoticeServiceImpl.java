@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
  */
 
-@Service("com.study.model.NoticeServiceImpl")
+@Service("com.study.notice.NoticeServiceImpl")
 public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMapper mapper;

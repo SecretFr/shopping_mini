@@ -36,7 +36,7 @@
 <div class="container">
 <h2 class="col-sm-offset-2 col-sm-10">공지 생성</h2>
 <form class="form-horizontal" 
-      action="./create"
+      action="/notice/create"
       method="post"
       onsubmit="return checkIn(this)"
       >
