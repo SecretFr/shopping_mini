@@ -28,7 +28,8 @@
     
     <c:otherwise>
     <c:forEach var="order" items="${cartAndContents}">
-    <li class="list-group-item">${fn:substring(order.odate,0,10)}, ${order.pname},${order.quantity}, ${order.price }원
+    <!-- ${fn:substring(order.odate,0,10)} 추가 필요-->
+    <li class="list-group-item">${order.pname},${order.quantity}, ${order.price }원
      <a href="review/create/{order.contentsno}"><span class="badge">Rivew</span></a></li>
     </c:forEach>
     </c:otherwise>
