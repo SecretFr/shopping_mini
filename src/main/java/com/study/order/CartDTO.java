@@ -17,8 +17,6 @@ public class CartDTO {
 	private int quantity;
 	private int price;
 	private int orderstate;
-	
-	List<ContentsDTO> contents;
 
 	public CartDTO() {
 		super();
@@ -32,7 +30,6 @@ public class CartDTO {
 		this.quantity = quantity;
 		this.price = price;
 		this.orderstate = orderstate;
-		this.contents = contents;
 	}
 
 	public int getCartno() {
@@ -74,14 +71,5 @@ public class CartDTO {
 	public void setOrderstate(int orderstate) {
 		this.orderstate = orderstate;
 	}
-
-	public List<ContentsDTO> getContents() {
-		return contents;
-	}
-
-	public void setContents(List<ContentsDTO> contents) {
-		this.contents = contents;
-	}
-	
 	
 }

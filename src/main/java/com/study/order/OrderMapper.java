@@ -8,4 +8,8 @@ public interface OrderMapper {
 	List<CartAndContentsDTO> getOrders(CartDTO cartDto);
 	
 	List<CartAndContentsDTO> getContents(CartDTO cartDto);
+	
+	int createOrder(OrderDTO orderDto);
+	
+	int updateCart(int cartno);
 }

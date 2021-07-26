@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.study.member.MemberMapper;
 
-import lombok.RequiredArgsConstructor;
-
 @Controller
 @RequestMapping
 public class OrderController {
@@ -56,6 +54,7 @@ public class OrderController {
 	}
 	
 	
+	//price, quantity 통합하여 하나로 보여주기
 	@GetMapping("/order")
 	public String getOrders(int cartno, HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
@@ -63,6 +62,8 @@ public class OrderController {
 		if (id == null) {
 			return "redirect:/member/login";
 		} 
+		
+		model.addAttribute("cartno", cartno);
 		
 		CartDTO cartDto = new CartDTO();
 		cartDto.setId(id);
@@ -76,16 +77,17 @@ public class OrderController {
 	}
 	
 	
-	//완료시 재고 -1, price, quantity 제대로 연산
-	//
+	// 완료시 재고 -1
+	// cart.orderstate = 1
 	@PostMapping("/order")
 	public String order(OrderDTO orderDto) {
-		// int cnt = orderMapper.create(orderDto);
-		// basketMapper.updateStatus(orderDto.getBasketId()); or basketMapper.delete(orderDto.getBasketId());
-//		if(cnt <= 0) {
-//			return "/error";
-//		}
+		if(orderMapper.updateCart(orderDto.getCartno()) > 0) {
+			return "redirect:/member/mypage";
+		}
+		if(orderMapper.createOrder(orderDto) > 0){
+			return "redirect:/member/mypage";
+		}
 		
-		return "redirect:/member/mypage";
+		return "/order";
 	}
 }

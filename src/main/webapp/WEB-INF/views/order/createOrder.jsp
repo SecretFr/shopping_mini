@@ -34,6 +34,9 @@
 							</select>
 						</div>
 					</div>
+					
+					<input type="hidden" id="cartno" name="cartno" value="${cartno}">
+					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-5">
 							<button class="btn">등록</button>
