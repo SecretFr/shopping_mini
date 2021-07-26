@@ -31,8 +31,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ]]> 
     </select>
 	<select id="getCategory" resultType="Map">
-
-	   select cateno, catename from category
+ 
+	   <!-- select cateno, catename from category  -->
 	   <!--where categrpno is null  -->
 
 		select g.categrpno, g.grpname, c.cateno, c.catename from
