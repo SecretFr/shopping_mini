@@ -72,4 +72,10 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.updateFile(map);
 	}
 
+	@Override
+	public MemberDTO mypage(String id) {
+		// TODO Auto-generated method stub
+		return mapper.mypage(id);
+	}
+
 }

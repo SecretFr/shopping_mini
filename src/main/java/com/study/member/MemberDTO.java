@@ -1,6 +1,10 @@
 package com.study.member;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
+
+import com.study.order.OrderDTO;
 
 import lombok.Data;
 
@@ -12,6 +16,17 @@ public class MemberDTO {
 	private String tel;
 	private String email;
 	private String zipcode;
+	private String address1;
+	private String address2;
+	private String job;
+	private String mdate;
+	private String fname;
+	
+	private String grade;
+	private MultipartFile fnameMF;
+	
+	private List<OrderDTO> list;
+	
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", passwd=" + passwd + ", mname=" + mname + ", tel=" + tel + ", email=" + email
@@ -117,11 +132,12 @@ public class MemberDTO {
 	public void setFnameMF(MultipartFile fnameMF) {
 		this.fnameMF = fnameMF;
 	}
-	private String address1;
-	private String address2;
-	private String job;
-	private String mdate;
-	private String fname;
-	private String grade;
-	private MultipartFile fnameMF;
+	public List<OrderDTO> getList() {
+		return list;
+	}
+	public void setList(List<OrderDTO> list) {
+		this.list = list;
+	}
+	
+
 }

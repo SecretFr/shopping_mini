@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service("com.study.contents.ContentsServiceImpl")
 public class ContentsServiceImpl implements ContentsService {
+	
 	@Autowired
 	private ContentsMapper mapper;
 
@@ -63,6 +64,12 @@ public class ContentsServiceImpl implements ContentsService {
 	public List<ContentsDTO> mainlist(Map map) {
 		// TODO Auto-generated method stub
 		return mapper.mainlist(map);
+	}
+
+	@Override
+	public List<Map> getCategoryGrp() {
+		// TODO Auto-generated method stub
+		return mapper.getCategoryGrp();
 	}
 
 }
