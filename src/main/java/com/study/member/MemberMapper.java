@@ -23,4 +23,8 @@ public interface MemberMapper {
 	List<MemberDTO> list(Map map);
 
 	int updateFile(Map map);
+	
+	MemberDTO mypage(String id);
+	
+	MemberDTO getMember(String id);
 }

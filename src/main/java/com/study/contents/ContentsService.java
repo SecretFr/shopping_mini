@@ -21,6 +21,8 @@ public interface ContentsService {
 	
 	List<Map> getCategory();
 	
+	List<Map> getCategoryGrp();
+	
 	List<ContentsDTO> mainlist(Map map);
 	
 	ContentsDTO detail(int contentsno);

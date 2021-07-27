@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.cart.CartMapper">
+
+	<!-- 영모님 quantity 설정해야합니s -->
+	<insert id="create" parameterType="com.study.cart.CartDTO">
+		insert into cart(cartno, id, orderstate)
+		values((select nvl(max(cartno),0)+1 from cart),
+		#{id}, #{orderstate})
+	</insert>
+	<insert id="createOrderCart"
+		parameterType="com.study.cart.OrderCartDTO">
+		insert into ordercart(contents_cart_no, contentsno, cartno, quantity)
+		values((select nvl(max(contents_cart_no),0)+1 from ordercart), #{contentsno},
+		(select nvl(max(cartno),1) from cart), #{quantity})
+	</insert>
+	<select id="getCartno" resultType="int">
+		select nvl(max(cartno),1) cartno from cart
+	</select>
+	<select id="hasCart" resultType="int">
+		select count(*) from cart
+		where id = #{id}
+		and orderstate = 0
+	</select>
+	
+	<delete id ="delete" parameterType="int">
+		delete from cart 
+		where cartno =#{cartno}
+	</delete>
+	
+	<delete id ="deleteCCN" parameterType="int">
+		delete from ordercart 
+		where contents_cart_no = #{contents_cart_no}
+	</delete>
+	
+	<select id ="getCartCount" parameterType ="int" resultType ="int">
+		select count(*) from ordercart 
+		where cartno = #{cartno}
+	</select>
+	
+	
+</mapper>
+
+
+<!-- <insert id="create" parameterType="com.study.contents.ContentsDTO"> 
+	insert into contents(contentsno, cateno, pname, price, filename, detail, 
+	rdate, stock) values((select nvl(max(contentsno),0)+1 from contents), #{cateno},#{pname}, 
+	#{price}, #{filename}, #{detail}, sysdate, #{stock}) </insert> -->

@@ -5,6 +5,17 @@
 <head>
   <title>상품메인페이지</title>
   <meta charset="utf-8">
+  
+<script>
+function detailP(contentsno){
+	var url = "${root}/contents/read/";
+	  url += contentsno;
+	  
+	  location.href=url;
+	
+}
+
+</script>
 </head>
 <body> 
  
@@ -23,8 +34,8 @@
 <div class="row">
     <c:forEach var="dto" begin="0" end="3" items="${list}">
     <div class="col-sm-3">
-      <h3>Ripped Skinny</h3>
-       <p><img src="/pstorage/${dto.filename }" class="img-thumbnail"  width="236" height="306"></p>
+      <h3>${dto.pname }</h3>
+       <p><img src="/pstorage/${dto.filename }" class="img-thumbnail"  width="236" height="306" onclick="detailP(${dto.contentsno})"></p>
         <p>${dto.pname }<br><b>${dto.price }</b></p>
     </div>
     </c:forEach>
@@ -32,8 +43,8 @@
  <div class="row">
     <c:forEach var="dto" begin="4" end="7" items="${list}">
     <div class="col-sm-3">
-      <h3>Vintage Skinny</h3>
-       <p><img src="/pstorage/${dto.filename }" class="img-thumbnail"  width="236" height="306"></p>
+      <h3>${dto.pname }</h3>
+       <p><img src="/pstorage/${dto.filename }" class="img-thumbnail"  width="236" height="306" onclick="detailP(${dto.contentsno})"></p>
         <p>${dto.pname }<br><b>${dto.price }</b></p>
     </div>
     </c:forEach>
