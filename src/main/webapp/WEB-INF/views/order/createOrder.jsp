@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -21,7 +20,7 @@
 						${contents.price }원</li>
 				</c:forEach>
 
-				<form class="form-horizontal" action="/order" method="post">
+				<form class="form-horizontal" action="/create/order" method="post">
 
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="cateno">결제방식</label>

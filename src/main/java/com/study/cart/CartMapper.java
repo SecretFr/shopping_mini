@@ -6,4 +6,7 @@ public interface CartMapper {
 	
 	int createOrderCart(OrderCartDTO dto);
 
+	int getCartno();
+	
+	int hasCart(String id);
 }

@@ -16,7 +16,7 @@
 
 			<tr>
 				<td colspan="2" style="text-align: center"><img
-					src="${root}/storage/${dto.pname}" width="250px" height="250px"
+					src="${root}/pstorage/${dto.filename}" width="250px" height="250px"
 					class="img-rounded"></td>
 			</tr>
 
@@ -42,6 +42,7 @@
 				<input type="hidden" name="price" value="${dto.price}"> 
 				<input type="hidden" name="detail" value="${dto.detail}"> 
 				<input type="hidden" name="stock" value="${dto.stock}"> 
+				<input type="text" name="quantity"> 
 				<input type="submit" class="createcartbtn" value="장바구니 등록!"></input>
 			</form>
  </div>

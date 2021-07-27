@@ -23,5 +23,18 @@ public class CartServiceImpl implements CartService {
 		return mapper.createOrderCart(dto);
 	}
 
+	@Override
+	public int getCartno() {
+		// TODO Auto-generated method stub
+		return mapper.getCartno();
+	}
+
+	@Override
+	public int hasCart(String id) {
+		// TODO Auto-generated method stub
+		return mapper.hasCart(id);
+	}
+	
+
 
 }

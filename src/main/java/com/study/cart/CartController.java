@@ -21,6 +21,9 @@ import com.study.order.OrderMapper;
 @Controller
 public class CartController {
 
+		final int BEFORE_ORDER = 0;
+		final int AFTER_ORDER = 1;
+	
 	 	@Autowired
 	    @Qualifier("com.study.cart.CartServiceImpl")
 	    private CartService service;
@@ -41,6 +44,7 @@ public class CartController {
 		    model.addAttribute("price", map.get("price"));
 		    model.addAttribute("detail", map.get("detail"));
 		    model.addAttribute("stock", map.get("stock"));
+		    model.addAttribute("quantity", map.get("quantity"));
 		    
 //		    System.out.println("pname: "+map.get("pname"));
 //		    System.out.println("no: "+map.get("contentsno"));
@@ -50,8 +54,8 @@ public class CartController {
 
 
 		    CartDTO cartDto = new CartDTO();
+		    cartDto.setOrderstate(BEFORE_ORDER);
 		    cartDto.setId(id);
-		    cartDto.setPrice(Integer.parseInt(map.get("price")));
 		    
 		    
 //		    System.out.println("contentsno : " + contentsno);
@@ -62,15 +66,33 @@ public class CartController {
 		    
 		    //CartDTO dto2 = service.create();
 		  //  return "redirect:/cart/list";
-			if (service.create(cartDto) > 0) {
-				OrderCartDTO orderCartDto = new OrderCartDTO();
+//		   select id = cart orderstate = 0 있는지
+//				  있다면  cart create X, orderCart에만 해당 cartno create
+//				  없다면 cart create
+			int hasCart = service.hasCart(id);
+		    if(hasCart > 0) {
+		    	OrderCartDTO orderCartDto = new OrderCartDTO();
+		    	orderCartDto.setCartno(service.getCartno());
 			    orderCartDto.setContentsno(Integer.parseInt(map.get("contentsno")));
+			    orderCartDto.setQuantity(Integer.parseInt(map.get("quantity")));
 			    service.createOrderCart(orderCartDto);
-		
-				return "redirect:/cart/list";
-			} else {
-				return "error";
-			}
+			    model.addAttribute("cartno", service.getCartno());
+			    System.out.println(service.getCartno());
+			    return "redirect:/cart/list";
+		    }else {
+				if (service.create(cartDto) > 0) {
+					OrderCartDTO orderCartDto = new OrderCartDTO();
+				    orderCartDto.setContentsno(Integer.parseInt(map.get("contentsno")));
+				    orderCartDto.setQuantity(Integer.parseInt(map.get("quantity")));
+				    service.createOrderCart(orderCartDto);
+				    model.addAttribute("cartno", service.getCartno());
+				    System.out.println(service.getCartno());
+					return "redirect:/cart/list";
+				}
+		    }
+	
+			return "error";
+			
 		}
 	 
 	 
@@ -87,11 +109,12 @@ public class CartController {
 		
 		CartDTO cartDto = new CartDTO();
 		cartDto.setId(id);
-		cartDto.setCartno(6);
-		cartDto.setOrderstate(0);
+		//cartDto.setCartno(6);
+		cartDto.setOrderstate(BEFORE_ORDER);
 		
 		List<CartAndContentsDTO> cartAndContents = orderMapper.getContents(cartDto);
 		model.addAttribute("cartlist", cartAndContents);
+		model.addAttribute("cartno", cartAndContents.get(0).getCartno());
 
 		
         return "/cart/list";

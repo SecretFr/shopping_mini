@@ -17,8 +17,17 @@
 		<li class="list-group-item">${cart.pname},${cart.quantity},
 			${cart.price }원</li>
 	</c:forEach>
+	<form class="form-horizontal" action="/order" method="post">
+		<input type="hidden" name="cartno" value="${cartno}">
+		<input type="hidden" name="contentsno" value="${dto.contentsno}">
+		<input type="hidden" name="pname" value="${dto.pname}"> 
+		<input type="hidden" name="price" value="${dto.price}">
+		<input type="hidden" name="detail" value="${dto.detail}">
+		<input type="hidden" name="stock" value="${dto.stock}"> 
+		<input type="hidden" name="quantity"> 
+		<input type="submit" class="createcartbtn" value="주문하기!"></input>
+	</form>
 
-
-	cartno : "${test}"
+	cartno : "${cartno}"
 </body>
 </html>

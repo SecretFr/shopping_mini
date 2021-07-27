@@ -17,6 +17,9 @@ import com.study.member.MemberMapper;
 @Controller
 @RequestMapping
 public class OrderController {
+
+	final int BEFORE_ORDER = 0;
+	final int AFTER_ORDER = 1;
 	
 	@Autowired
 	private OrderMapper orderMapper;
@@ -56,7 +59,7 @@ public class OrderController {
 	
 	
 	//price, quantity 통합하여 하나로 보여주기
-	@GetMapping("/order")
+	@PostMapping("/order")
 	public String getOrders(int cartno, HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
 
@@ -68,8 +71,8 @@ public class OrderController {
 		
 		CartDTO cartDto = new CartDTO();
 		cartDto.setId(id);
-		cartDto.setCartno(cartno);
-		cartDto.setOrderstate(0);
+		//cartDto.setCartno(cartno);
+		cartDto.setOrderstate(BEFORE_ORDER);
 		
 		List<CartAndContentsDTO> cartAndContents = orderMapper.getContents(cartDto);
 		model.addAttribute("cartAndContents", cartAndContents);
@@ -80,13 +83,19 @@ public class OrderController {
 	
 	// 완료시 재고 -1
 	// cart.orderstate = 1
-	@PostMapping("/order")
-	public String order(OrderDTO orderDto) {
-		if(orderMapper.updateCart(orderDto.getCartno()) > 0) {
-			return "redirect:/member/mypage";
-		}
-		if(orderMapper.createOrder(orderDto) > 0){
-			return "redirect:/member/mypage";
+	@PostMapping("/create/order")
+	public String order(HttpSession session, OrderDTO orderDto) {
+		String id = (String) session.getAttribute("id");
+
+		if (id == null) {
+			return "redirect:/member/login";
+		} 
+		
+		if(orderMapper.updateCart(id) > 0) {
+			if(orderMapper.createOrder(orderDto) > 0){
+				//orderMapper.updateStock(orderDto.getCartno());
+				return "redirect:/member/mypage";
+			}
 		}
 		
 		return "/order";
