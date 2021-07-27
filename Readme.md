@@ -26,6 +26,10 @@ IDE : STS, InteliJ
 
 JDK Version : 1.8 or 11
 
+### ERD
+![shopping_mall_ERD](https://user-images.githubusercontent.com/42633180/127127259-aac4a6d0-eb08-45a0-85f6-c2f08e64273a.png)
+
+
 ### 초기 역할 분담
 ```
 민웅기 : 쇼핑몰 list-up, 리뷰, 댓글 로직 및 구현
