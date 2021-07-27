@@ -19,7 +19,7 @@ img {
  
 <div class="container">
     <p><a href="./contents/mainlist/1" >SHOP NOW</a></p>
-    <img src="./images/yangjaewon.jpg" alt="jaewon">
+    <img src="./images/main.jpg" alt="main">
     
 </div>
 </body> 

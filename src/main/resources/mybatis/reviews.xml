@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.reviews.ReviewsMapper">
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM review
+		WHERE reviewno = #{reviewno}
+	</delete>
+
+	<select id="passCheck" parameterType="Map" resultType="int">
+		SELECT
+		COUNT(*) as cnt
+		FROM review
+		WHERE reviewno=#{reviewno} AND revpass=#{revpass}
+	</select>
+
+	<select id="checkRefnum" parameterType="int" resultType="int">
+		SELECT
+		count(*) FROM review
+		WHERE repno = #{reviewno}
+	</select>
+
+	<select id="findPname" parameterType="int" resultType="Map">
+		select
+		pname
+		from review natural join contents
+		where reviewno = #{reviewno}
+	</select>
+
+	<update id="update" parameterType="com.study.reviews.ReviewsDTO">
+
+		update review
+		set revtitle =
+		#{revtitle},
+		revcontent = #{revcontent},
+		revdate = sysdate,
+		revwriter =
+		#{revwriter}
+		revpass = #{revpass}
+		from review
+		where reviewno =
+		#{reviewno}
+
+	</update>
+
+	<select id="read" parameterType="int"
+		resultType="com.study.reviews.ReviewsDTO">
+		SELECT reviewno,
+		revwriter, revtitle, revcontent, viewcnt,
+		to_char(revdate,'yyyy-mm-dd') revdate
+		FROM review
+		WHERE reviewno =
+		#{reviewno}
+	</select>
+
+	<update id="upViewcnt" parameterType="int">
+		update review
+		set viewcnt =
+		viewcnt + 1
+		where reviewno = #{reviewno}
+	</update>
+
+	<select id="findContentsno"
+		parameterType="com.study.reviews.ReviewsDTO" resultType="Map">
+		select
+		contentsno, filename
+		from contents
+		where pname = #{pname}
+	</select>
+
+	<select id="getOption" parameterType="int"
+		resultType="com.study.reviews.ReviewsDTO">
+		select cateno, pname, filename from contents
+		order by
+		contentsno
+	</select>
+
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from contents
+		<where>
+			<choose>
+				<when test="col=='pname'">
+					pname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='cateno'">
+					cateno = #{word}
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="list" parameterType="Map"
+		resultType="com.study.reviews.ReviewsDTO">
+		select reviewno, contentsno, revtitle, revcontent, revdate,
+        revwriter,
+        cateno, pname, filename, r
+		from (
+		select reviewno, contentsno, revtitle, revcontent, revdate,
+        revwriter,
+        cateno, pname, filename, rownum r
+        from (
+		select reviewno, contentsno, revtitle, revcontent, revdate,
+		revwriter,
+		cateno, pname, filename, rownum r
+		from review natural join contents
+		<where>
+            <choose>
+                <when test="col=='pname'">
+                    pname like '%'||#{word}||'%'
+                </when>
+                <when test="col=='cateno'">
+                    cateno = #{word}
+                </when>
+            </choose>
+        </where>
+		order by reviewno desc
+		)
+		<![CDATA[       
+                )where r >= #{sno} and r <= #{eno}
+        ]]>
+	</select>
+
+
+	<insert id="create" parameterType="com.study.reviews.ReviewsDTO">
+		insert into review(reviewno,
+		contentsno, revtitle, revcontent,
+		revdate, revwriter,
+		revpass)
+		values((select nvl(max(reviewno),0)+1
+		from review),
+		#{contentsno},
+		#{revtitle}, #{revcontent}, sysdate, #{revwriter},
+		#{revpass})
+	</insert>
+
+</mapper>

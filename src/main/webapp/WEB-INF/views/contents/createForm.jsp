@@ -13,6 +13,7 @@
 
  function checkIn(f){
      if (f.pname.value == ""){
+    	   
              alert("상품명을 입력하세요");
              f.pname.focus()
              return false;
@@ -54,7 +55,7 @@
     <label class="control-label col-sm-2" for="cateno">상품분류</label>
     <div class="col-sm-6">
       <select class="form-control" name="cateno">
-        <option value="1"
+        <option id="A" value="1"
         <c:if test= "${cateno==1}"> selected </c:if>
         >Jean</option>
         <option value="2"

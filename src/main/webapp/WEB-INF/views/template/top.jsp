@@ -114,9 +114,11 @@
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">community <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+
 							<li><a href="${root}/member/mypage">Mypage</a></li>
 							<li><a href="${root}/review/list">Review</a></li>
 							<li><a href="${root}/notice/list">Notice</a></li>
+
 							<li><a href="#">Q&A</a></li>
 						</ul></li>
 					<li><a id="grade"><span class="glyphicon glyphicon-grain"></span>
