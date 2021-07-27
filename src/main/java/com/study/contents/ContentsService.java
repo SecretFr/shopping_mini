@@ -3,6 +3,8 @@ package com.study.contents;
 import java.util.List;
 import java.util.Map;
 
+import com.study.reviews.ReviewsDTO;
+
 public interface ContentsService {
 
 	int create(ContentsDTO dto);

@@ -6,6 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.study.reviews.ReviewsDTO;
+import com.study.reviews.ReviewsMapper;
+
 @Service("com.study.contents.ContentsServiceImpl")
 public class ContentsServiceImpl implements ContentsService {
 	@Autowired
