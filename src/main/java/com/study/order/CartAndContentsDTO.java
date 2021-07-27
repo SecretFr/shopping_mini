@@ -18,6 +18,24 @@ public class CartAndContentsDTO {
 	private String pname;
 	private int contentsPrice;
 	private String detail;
+	private int sum;
+	private int contentsCartNo;
+
+	public int getContentsCartNo() {
+		return contentsCartNo;
+	}
+
+	public void setContentsCartNo(int contentsCartNo) {
+		this.contentsCartNo = contentsCartNo;
+	}
+
+	public int getSum() {
+		return sum;
+	}
+
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
 
 	public LocalDate getOdate() {
 		return odate;

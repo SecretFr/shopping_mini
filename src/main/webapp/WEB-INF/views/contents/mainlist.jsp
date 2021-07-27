@@ -44,7 +44,7 @@ function detailP(contentsno){
     <c:forEach var="dto" begin="4" end="7" items="${list}">
     <div class="col-sm-3">
       <h3>${dto.pname }</h3>
-       <p><img src="/pstorage/${dto.filename }" class="img-thumbnail"  width="236" height="306"></p>
+       <p><img src="/pstorage/${dto.filename }" class="img-thumbnail"  width="236" height="306" onclick="detailP(${dto.contentsno})"></p>
         <p>${dto.pname }<br><b>${dto.price }</b></p>
     </div>
     </c:forEach>

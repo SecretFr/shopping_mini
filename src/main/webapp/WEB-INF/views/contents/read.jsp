@@ -42,7 +42,7 @@
 				<input type="hidden" name="price" value="${dto.price}"> 
 				<input type="hidden" name="detail" value="${dto.detail}"> 
 				<input type="hidden" name="stock" value="${dto.stock}"> 
-				<input type="text" name="quantity"> 
+				<input placeholder="수량 입력" type="text" name="quantity"> 
 				<input type="submit" class="createcartbtn" value="장바구니 등록!"></input>
 			</form>
  </div>

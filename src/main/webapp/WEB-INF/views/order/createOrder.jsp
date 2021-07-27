@@ -14,11 +14,31 @@
 		<c:choose>
 			<c:when test="${empty cartAndContents }">장바구니에 상품이 없습니다.</c:when>
 			<c:otherwise>
-				<c:forEach var="contents" items="${cartAndContents}">
-					<!-- 이미지나 상품 상세 링크 필요하면 추가하기.-->
-					<li class="list-group-item">${contents.pname},${contents.quantity},
-						${contents.price }원</li>
+				<c:forEach var="dto" items="${cartAndContents}">
+					<table class="table table-bordered">
+						<tr>
+							<th class="col-sm-2">아이디</th>
+							<td class="col-sm-8"><a href="javascript:read('${dto.id}')">${dto.id}</a></td>
+						</tr>
+						<tr>
+							<th class="col-sm-2">상품명</th>
+							<td class="col-sm-8">${dto.pname}</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2">가격</th>
+							<td class="col-sm-8" id="price">${dto.price}</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2">수량</th>
+							<td class="col-sm-8" id="quantity">${dto.quantity}</td>
+						</tr>
+						<tr>
+							<th class="col-sm-2">합계</th>
+							<td class="col-sm-8" id="sum">${dto.sum }</td>
+						</tr>
+					</table>
 				</c:forEach>
+				${paging}
 
 				<form class="form-horizontal" action="/create/order" method="post">
 
@@ -33,9 +53,9 @@
 							</select>
 						</div>
 					</div>
-					
+
 					<input type="hidden" id="cartno" name="cartno" value="${cartno}">
-					
+
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-5">
 							<button class="btn">등록</button>

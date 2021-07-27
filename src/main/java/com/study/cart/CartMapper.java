@@ -9,4 +9,10 @@ public interface CartMapper {
 	int getCartno();
 	
 	int hasCart(String id);
+
+	void delete(int cartno);
+
+	void deleteCCN(int contentscartno);
+
+	int getCartCount(int cartno);
 }

@@ -34,6 +34,23 @@ public class CartServiceImpl implements CartService {
 		// TODO Auto-generated method stub
 		return mapper.hasCart(id);
 	}
+
+	@Override
+	public void delete(int cartno) {
+		mapper.delete(cartno);
+	}
+
+	@Override
+	public void deleteCCN(int contentscartno) {
+		mapper.deleteCCN(contentscartno);
+		
+	}
+
+	@Override
+	public int getCartCount(int cartno) {
+		
+		return mapper.getCartCount(cartno);
+	}
 	
 
 

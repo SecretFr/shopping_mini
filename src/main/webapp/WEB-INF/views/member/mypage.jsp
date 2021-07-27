@@ -32,18 +32,49 @@
 						<c:when test="${empty cartAndContents }">주문한 상품이 없습니다.</c:when>
 
 						<c:otherwise>
-							<c:forEach var="order" items="${cartAndContents}">
-								<!-- ${fn:substring(order.odate,0,10)} 추가 필요-->
-								<li class="list-group-item">${order.cartno}, ${fn:substring(order.odate,0,10)},
-									${order.pname}, ${order.quantity}, ${order.price }원 <a
-									href="review/create/{order.contentsno}"><span class="badge">Rivew</span></a>
-								</li>
+							<c:forEach var="dto" items="${cartAndContents}">
+								<table class="table table-bordered">
+									<tr>
+										<th class="col-sm-2">주문일</th>
+										<td class="col-sm-8">${dto.odate}</td>
+									</tr>
+									<tr>
+										<th class="col-sm-2">아이디</th>
+										<td class="col-sm-8"><a
+											href="javascript:read('${dto.id}')">${dto.id}</a></td>
+									</tr>
+									<tr>
+										<th class="col-sm-2">상품명</th>
+										<td class="col-sm-8">${dto.pname}</td>
+									</tr>
+									<tr>
+										<th class="col-sm-2">가격</th>
+										<td class="col-sm-8" id="price">${dto.price}</td>
+									</tr>
+									<tr>
+										<th class="col-sm-2">수량</th>
+										<td class="col-sm-8" id="quantity">${dto.quantity}</td>
+									</tr>
+									<tr>
+										<th class="col-sm-2">합계</th>
+										<td class="col-sm-8" id="sum">${dto.sum }</td>
+									</tr>
+								</table>
 							</c:forEach>
+							${paging}
 						</c:otherwise>
 					</c:choose>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<script>
+		var quantity = $('#quantity').text();
+		var price = $('#price').text();
+		var sum = price * quantity;
+		console.log(quantity);
+		console.log(price);
+		document.getElementById('sum').innerHTML = sum;
+	</script>
 </body>
 </html>

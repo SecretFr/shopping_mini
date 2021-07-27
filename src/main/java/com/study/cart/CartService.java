@@ -13,4 +13,10 @@ public interface CartService {
 	int hasCart(String id);
 //	CartDTO create();
 
+	void delete(int cartno);
+
+	void deleteCCN(int contentscartno);
+
+	int getCartCount(int cartno);
+
 }

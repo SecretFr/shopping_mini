@@ -13,7 +13,4 @@ public interface OrderMapper {
 	int createOrder(OrderDTO orderDto);
 	
 	int updateCart(String id);
-	
-	// TODO
-	// int updateStock(int cartno);
 }

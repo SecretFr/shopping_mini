@@ -3,6 +3,7 @@ package com.study.cart;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,6 +33,37 @@ public class CartController {
 	 	@Autowired
 	 	private OrderMapper orderMapper;
 	 
+	 	@GetMapping("/cart/delete/{cartno}/{contentsCartNo}")
+	 	public String delete(@PathVariable("cartno") int cartno, @PathVariable("contentsCartNo") int contentscartno, HttpServletRequest request, Model model){
+	 		
+	 		
+//			ContentsDTO dto =service.read(contentsno);
+//			model.addAttribute("dto",dto);
+//			return "/contents/read";
+	 		
+	 		//ordercart에 있는 cartnumber 개수 구함.
+	 		int totalcartcount = service.getCartCount(cartno);
+	 		
+	 		
+	 		if(totalcartcount > 1) {
+	 			
+	 			service.deleteCCN(contentscartno);
+
+	 		}else {
+	 			
+	 			service.deleteCCN(contentscartno);
+		 		service.delete(cartno);
+		 		
+	 			
+	 		}
+	 		
+	 		return "redirect:/cart/list";
+	 	}
+	 	
+	 	
+
+		
+	 	
 		@PostMapping("/cart/create")
 		public String update( @RequestParam Map<String,String> map, Model model, HttpSession session) {
 			String id = (String) session.getAttribute("id");
@@ -113,9 +146,14 @@ public class CartController {
 		cartDto.setOrderstate(BEFORE_ORDER);
 		
 		List<CartAndContentsDTO> cartAndContents = orderMapper.getContents(cartDto);
+		if(cartAndContents.size() <= 0) {
+			return "/cart/list";
+		}
+		for(CartAndContentsDTO dto : cartAndContents) {
+			dto.setSum(dto.getPrice() * dto.getQuantity());
+		}
 		model.addAttribute("cartlist", cartAndContents);
 		model.addAttribute("cartno", cartAndContents.get(0).getCartno());
-
 		
         return "/cart/list";
     }

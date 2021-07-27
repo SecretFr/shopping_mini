@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getContents" parameterType="com.study.cart.CartDTO"
 		resultType="com.study.order.CartAndContentsDTO">
 		select c.cartno cartno, c.id id, c.orderstate orderstate,
-		oc.quantity quantity, 
+		oc.quantity quantity, oc.contents_cart_no contentscartno, 
 		cs.contentsno contentsno, cs.pname pname, 
 		cs.price price, cs.detail detail
 		from cart c

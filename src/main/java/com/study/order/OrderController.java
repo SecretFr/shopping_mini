@@ -22,7 +22,7 @@ public class OrderController {
 	final int AFTER_ORDER = 1;
 	
 	@Autowired
-	private OrderMapper orderMapper;
+	private OrderService orderService;
 	
 	@Autowired
 	private MemberMapper memberMapper;
@@ -47,11 +47,11 @@ public class OrderController {
 
 		model.addAttribute("member", memberMapper.getMember(id));
 		System.out.println(memberMapper.getMember(id));
-		List<CartAndContentsDTO> cartAndContents = orderMapper.getOrders(cartDto);
+		List<CartAndContentsDTO> cartAndContents = orderService.getOrders(cartDto);
 		model.addAttribute("cartAndContents", cartAndContents);
 
 		for(CartAndContentsDTO dto : cartAndContents) {
-			System.out.println(dto);
+			dto.setSum(dto.getPrice() * dto.getQuantity());
 		}
 		return "/member/mypage";
 		
@@ -74,7 +74,10 @@ public class OrderController {
 		//cartDto.setCartno(cartno);
 		cartDto.setOrderstate(BEFORE_ORDER);
 		
-		List<CartAndContentsDTO> cartAndContents = orderMapper.getContents(cartDto);
+		List<CartAndContentsDTO> cartAndContents = orderService.getContents(cartDto);
+		for(CartAndContentsDTO dto : cartAndContents) {
+			dto.setSum(dto.getPrice() * dto.getQuantity());
+		}
 		model.addAttribute("cartAndContents", cartAndContents);
 
 		return "/order";
@@ -91,8 +94,8 @@ public class OrderController {
 			return "redirect:/member/login";
 		} 
 		
-		if(orderMapper.updateCart(id) > 0) {
-			if(orderMapper.createOrder(orderDto) > 0){
+		if(orderService.updateCart(id) > 0) {
+			if(orderService.createOrder(orderDto) > 0){
 				//orderMapper.updateStock(orderDto.getCartno());
 				return "redirect:/member/mypage";
 			}

@@ -25,6 +25,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{id}
 		and orderstate = 0
 	</select>
+	
+	<delete id ="delete" parameterType="int">
+		delete from cart 
+		where cartno =#{cartno}
+	</delete>
+	
+	<delete id ="deleteCCN" parameterType="int">
+		delete from ordercart 
+		where contents_cart_no = #{contents_cart_no}
+	</delete>
+	
+	<select id ="getCartCount" parameterType ="int" resultType ="int">
+		select count(*) from ordercart 
+		where cartno = #{cartno}
+	</select>
+	
+	
 </mapper>
 
 
